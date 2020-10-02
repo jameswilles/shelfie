@@ -3,17 +3,29 @@ import Form from './Components/Form/Form'
 import Header from './Components/Header/Header'
 import Dashboard from './Components/Dashboard/Dashboard'
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
   constructor() {
     super()
 
     this.state = {
-      inventoryList: [
-        {name: 'pizza', price: 22.2, img_url: ''},
-        {name: 'rice', price: 2, img_url: ''}
-      ]
+      inventoryList: []
     }
+
+    this.getInventory = this.getInventory.bind(this)
+  }
+
+  getInventory() {
+    axios.get('/api/inventory')
+    .then(res => {
+      this.setState({ inventoryList: res.data})
+    })
+    .catch(err => console.log(err))
+  }
+
+  componentDidMount() {
+    this.getInventory()
   }
 
   render() {
@@ -21,7 +33,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Dashboard inventory={this.state.inventoryList} />
-        <Form />
+        <Form getInventory={this.getInventory} />
       </div>
     );
   }

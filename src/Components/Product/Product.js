@@ -7,7 +7,7 @@ export default class Product extends Component {
         <p> Product </p>
         <p> {this.props.name} </p>
         <p> {this.props.price} </p>
-        <img src={this.props.img} />
+        <img src={this.props.img} alt='' />
       </div>
     )
   }

@@ -6,7 +6,7 @@ export default class Form extends Component {
 
     this.state = {
       nameInput: '',
-      priceInput: null,
+      priceInput: '',
       imgInput: ''
     }
 
@@ -28,13 +28,9 @@ export default class Form extends Component {
   handleCancel = () => {
     this.setState({
       nameInput: '',
-      priceInput: null,
+      priceInput: '',
       imgInput: ''
     })
-  }
-
-  handleAdd = () => {
-
   }
   
   render() {

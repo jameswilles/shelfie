@@ -2,20 +2,14 @@ import React, { Component } from 'react'
 import Product from '../Product/Product'
 
 export default class Dashboard extends Component {
-  constructor() {
-    super()
-
-    this.state = {
-
-    }
-  }
 
   render() {
     const mappedInventory = this.props.inventory.map((item, i) => (
       <Product 
-        name={this.props.inventory[i].name}
+        key={i}
+        name={this.props.inventory[i].item}
         price={this.props.inventory[i].price}
-        img={this.props.inventory[i].img_url} />
+        img={this.props.inventory[i].image} />
     ))
     return(
       <div>

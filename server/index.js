@@ -15,4 +15,7 @@ massive({
   console.log('db connected')
 })
 
+app.get('/api/inventory', ctrl.getInventory);
+// app.post('/api/product', ctrl.addProduct)
+
 app.listen(SERVER_PORT, () => console.log(`Server listening on ${SERVER_PORT}`));
