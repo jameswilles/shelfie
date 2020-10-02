@@ -35,15 +35,19 @@ export default class Form extends Component {
   }
 
   handleAdd = () => {
-    const { nameInput, priceInput, imgInput} = this.state;
     let newProduct = {
-      item: nameInput,
-      price: priceInput,
-      image: imgInput}
-      axios.post('/api/product', newProduct)
-        .then(this.props.getInventory())
-        .catch(err => console.log(err))
+      item_name: this.state.nameInput,
+      price: this.state.priceInput,
+      image: this.state.imgInput
     }
+    axios.post('/api/product', {newProduct: newProduct})
+    .then(res => {
+      this.setState({inventoryList: res.data})
+      this.handleCancel()
+      this.props.getInventory()
+    })
+    .catch(err => console.log(err))
+  }
 
   
   render() {

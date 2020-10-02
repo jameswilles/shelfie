@@ -1,2 +1,2 @@
-insert into product (item, price, image)
-values (${item}, ${price}, ${image});
+insert into product (item_name, price, image)
+values ($1, $2, $3);

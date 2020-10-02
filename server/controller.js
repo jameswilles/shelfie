@@ -6,10 +6,23 @@ module.exports = {
     .catch(err => res.status(500).send(err))
   },
   addProduct: (req, res) => {
-    const {product} = req.body
+    const {item_name, price, image} = req.body.newProduct
     const db = req.app.get('db')
-    db.create_product({item: product.name, price: product.price, image: product.image})
+    db.create_product([item_name, price, image])
     .then(products => res.status(200).send(products))
-    .catch(err => res.status(500).send(err))
+    .catch(err => {
+      console.log(err)
+      res.status(500).send(err)})
+  },
+  deleteProduct: (req, res) => {
+    const {id} = req.params;
+    const db = req.app.get('db')
+
+    db.delete_product(id)
+    .then(products => res.status(200).send(products))
+    .catch(err => {
+      console.log(err)
+      res.status(500).send(err)
+    })
   }
 }
