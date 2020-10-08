@@ -20,6 +20,7 @@ class App extends Component {
     axios.get('/api/inventory')
     .then(res => {
       this.setState({ inventoryList: res.data})
+      console.log(this.state.inventoryList)
     })
     .catch(err => console.log(err))
   }

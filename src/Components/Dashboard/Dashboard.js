@@ -4,9 +4,9 @@ import axios from 'axios'
 
 export default class Dashboard extends Component {
   deleteProduct = (id) => {
-    axios.delete(`/api/product/${id}`)
+    axios.delete(`api/product/${id}`)
     .then(this.props.getInventory())
-    .catch(err => console.log(err))
+    .catch(err => {console.log(err)})
   }
 
   render() {
@@ -16,6 +16,7 @@ export default class Dashboard extends Component {
           name={this.props.inventory[i].item_name}
           price={this.props.inventory[i].price}
           img={this.props.inventory[i].image}
+          id={this.props.inventory[i].product_id}
           deleteProduct={this.deleteProduct} />  
     ))
     return(

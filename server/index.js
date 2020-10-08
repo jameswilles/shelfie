@@ -17,6 +17,6 @@ massive({
 
 app.get('/api/inventory', ctrl.getInventory);
 app.post('/api/product', ctrl.addProduct);
-app.delete('api/product/:id', ctrl.deleteProduct);
+app.delete('/api/product/:id', ctrl.deleteProduct);
 
 app.listen(SERVER_PORT, () => console.log(`Server listening on ${SERVER_PORT}`));

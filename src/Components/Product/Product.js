@@ -8,7 +8,7 @@ export default class Product extends Component {
         <p> {this.props.name} </p>
         <p> {this.props.price} </p>
         <img src={this.props.img} alt='Not Found' />
-        <button onClick={this.props.deleteProduct}> Delete </button>
+        <button onClick={() => this.props.deleteProduct(this.props.id)}> Delete </button>
       </div>
     )
   }

@@ -17,11 +17,11 @@ module.exports = {
   deleteProduct: (req, res) => {
     const {id} = req.params;
     const db = req.app.get('db')
-
+    
     db.delete_product(id)
     .then(products => res.status(200).send(products))
     .catch(err => {
-      console.log(err)
+      console.log('This is an error')
       res.status(500).send(err)
     })
   }
