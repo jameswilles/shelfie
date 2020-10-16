@@ -10,7 +10,8 @@ class App extends Component {
     super()
 
     this.state = {
-      inventoryList: []
+      inventoryList: [],
+      selectedProduct: null
     }
 
     this.getInventory = this.getInventory.bind(this)
@@ -29,14 +30,23 @@ class App extends Component {
     this.getInventory()
   }
 
+  selectProduct = (productObj) => {
+    this.setState({selectedProduct: productObj})
+    console.log(productObj)
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
         <Dashboard 
           inventory={this.state.inventoryList}
-          getInventory={this.getInventory} />
-        <Form getInventory={this.getInventory} />
+          getInventory={this.getInventory}
+          selectProduct={this.selectProduct} />
+        <Form 
+          getInventory={this.getInventory} 
+          selectedProduct={this.state.selectedProduct}
+           />
       </div>
     );
   }

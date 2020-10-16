@@ -8,11 +8,19 @@ export default class Form extends Component {
     this.state = {
       nameInput: '',
       priceInput: '',
-      imgInput: ''
+      imgInput: '',
+      editProduct: null
     }
 
     this.handlePrice = this.handlePrice.bind(this)
   }
+
+  componentDidUpdate(oldProps) {
+    if (this.props.selectedProduct !== oldProps.selectedProduct) {
+      this.setState({editProduct: this.props.selectedProduct})
+    }
+    
+  };
 
   handleName = (val) => {
     this.setState({ nameInput: val })

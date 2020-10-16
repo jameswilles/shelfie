@@ -17,7 +17,8 @@ export default class Dashboard extends Component {
           price={this.props.inventory[i].price}
           img={this.props.inventory[i].image}
           id={this.props.inventory[i].product_id}
-          deleteProduct={this.deleteProduct} />  
+          deleteProduct={this.deleteProduct}
+          selectProduct={this.props.selectProduct} />  
     ))
     return(
       <div>
