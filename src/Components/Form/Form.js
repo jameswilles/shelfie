@@ -38,7 +38,8 @@ export default class Form extends Component {
     this.setState({
       nameInput: '',
       priceInput: '',
-      imgInput: ''
+      imgInput: '',
+      editProduct: null
     })
   }
 
@@ -57,6 +58,16 @@ export default class Form extends Component {
     .catch(err => console.log(err))
   }
 
+  handleEdit = () => {
+    const { nameInput, priceInput, imgInput } = this.state
+    axios.put(`/api/product/${this.props.selectedProduct.id}`, {name: nameInput, price: priceInput, img: imgInput})
+    .then(res => {
+      this.props.getInventory()
+      this.handleCancel()
+      this.setState({editProduct: null})
+    }).catch(() => console.log('error'))
+  }
+
   
   render() {
     return(
@@ -66,7 +77,10 @@ export default class Form extends Component {
         <input placeholder='Price' onChange={e => this.handlePrice(e.target.value)} value={this.state.priceInput} />
         <input placeholder='Image URL' onChange={e => this.handleImg(e.target.value)} value={this.state.imgInput} />
         <button onClick={this.handleCancel}> Cancel </button>
-        <button onClick={this.handleAdd}> Add to Inventory </button>
+        {this.state.editProduct
+        ? (<button onClick={this.handleEdit}> Save Changes </button>)
+        : (<button onClick={() => this.handleAdd()}> Add Product </button>)}
+
       </div>
     )
   }

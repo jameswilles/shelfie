@@ -24,5 +24,15 @@ module.exports = {
       console.log('This is an error')
       res.status(500).send(err)
     })
+  },
+  editProduct: (req, res) => {
+    console.log( req.body )
+    const { id } = req.params
+    const { name, price, img } = req.body
+    db = req.app.get('db')
+
+    db.edit_product( name, price, img, id )
+    .then( product => res.status(200).send(product))
+    .catch(err => console.log(err));
   }
 }
